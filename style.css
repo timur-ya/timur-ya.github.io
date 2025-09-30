@@ -39,3 +39,27 @@ nav a {
 nav a:hover {
   color: #ff4500;
 }
+form {
+  margin: 20px 0;
+}
+
+form input {
+  padding: 8px;
+  margin: 5px;
+  border: 2px solid #333;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 8px 15px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #ff4500;
+  color: white;
+}
