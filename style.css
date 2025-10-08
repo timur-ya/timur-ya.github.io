@@ -81,4 +81,12 @@ button:hover {
   transform: scale(1.1);
   box-shadow: 0 0 10px #00ccff;
 }
+@keyframes float {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
 
+.avatar {
+  animation: float 4s infinite ease-in-out;
+}
