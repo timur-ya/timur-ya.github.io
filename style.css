@@ -1,6 +1,6 @@
 /* Make the whole page colorful */
 body {
-  background-color: #08569b;
+  background-color: hsl(208, 93%, 76%);
   font-family: Arial, sans-serif;
 
   div {
