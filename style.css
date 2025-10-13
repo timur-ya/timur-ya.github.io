@@ -90,3 +90,18 @@ button:hover {
 .avatar {
   animation: float 4s infinite ease-in-out;
 }
+#clickButton {
+  background-color: #00bfff;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#clickButton:hover {
+  background-color: #ff69b4;
+  transform: scale(1.1);
+}
