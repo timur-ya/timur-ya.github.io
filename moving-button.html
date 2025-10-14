@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Catch the Button Game</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f8ff;
+      overflow: hidden;
+    }
+
+    #gameButton {
+      position: absolute;
+      background-color: #ff6347;
+      border: none;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 Catch the Button!</h1>
+  <button id="gameButton">Catch Me!</button>
+
+  <script src="moving-button.js"></script>
+</body>
+</html>
