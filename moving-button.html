@@ -5,12 +5,14 @@
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      height: 100vh;
+      height: 100vh;   
+      flex-direction: column;
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: #f0f8ff;
       overflow: hidden;
+      user-select: none;
     }
 
     #gameButton {
@@ -18,18 +20,22 @@
       background-color: #ff6347;
       border: none;
       color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
+      border-radius: 100%;
       font-size: 18px;
       cursor: pointer;
       transition: 0.2s;
+      transform: none;
+      min-width: 200px;
+      min-height: 200px;
     }
   </style>
 </head>
 <body>
   <h1>🎯 Catch the Button!</h1>
+  <h2>Score: <span id="scoreText">?</span></h2>
+  <br />
   <button id="gameButton">Catch Me!</button>
-
+  <p>Time left: <span id="timeText">?</span>s</p>
   <script src="moving-button.js"></script>
 </body>
 </html>
