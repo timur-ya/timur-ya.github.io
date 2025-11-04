@@ -1,6 +1,12 @@
 const button = document.getElementById("gameButton");
 const scoreText = document.getElementById("scoreText");
 const timeText = document.getElementById("timeText");
+
+const hitSound = document.getElementById("hitSound");
+const gameOverSound = document.getElementById("gameOverSound");
+
+let highScore = 0;
+
 let score = 0;
 let timeLeft = 0;
 
@@ -21,6 +27,7 @@ function startGame() {
   timeLeft = 15; // shorter game
   scoreText.textContent = score;
   timeText.textContent = timeLeft;
+  highScoreDisplay.textContent = "High Score: " + highScore
 
   button.textContent = "Target";
   button.style.backgroundColor = "red";
@@ -60,6 +67,8 @@ function handleHit() {
   scoreText.textContent = score;
   clearInterval(autoMoveInterval);
   autoMoveInterval = setInterval(autoMove, moveDelay);
+  hitSound.currentTime = 0;
+  hitSound.play();
 }
 
 function adjustSpeed(faster) {
@@ -80,6 +89,7 @@ function autoMove() {
 }
 
 function endGame() {
+  gameOverSound.play();
   clearInterval(autoMoveInterval);
   clearInterval(timeInterval);
   button.textContent = "Restart";

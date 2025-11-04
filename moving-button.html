@@ -29,10 +29,13 @@
       min-height: 200px;
     }
   </style>
+  <audio id="hitSound" src="pop.mp3"></audio>
+  <audio id="gameOverSound" src="gameover.mp3"></audio>
 </head>
 <body>
   <h1>🎯 Catch the Button!</h1>
   <h2>Score: <span id="scoreText">?</span></h2>
+  <h3 id="highScoreDisplay">High Score: 0</h3>
   <br />
   <button id="gameButton">Catch Me!</button>
   <p>Time left: <span id="timeText">?</span>s</p>
