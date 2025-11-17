@@ -39,6 +39,17 @@
   <br />
   <button id="gameButton">Catch Me!</button>
   <p>Time left: <span id="timeText">?</span>s</p>
+  <button id="settingsButton">Settings ⚙️</button>
+  
+  <div id="settingsPanel" style="display:none;">
+    <h3>Settings</h3>
+    <label>Target size: <input type="number" id="inputSize" value="200"> px</label><br>
+    <label>Adjust speed per hit: <input type="number" id="inputHitSpeed" value="20"> %</label><br>
+    <label>Adjust speed per auto-move: <input type="number" id="inputMissSpeed" value="20"> %</label><br>
+    <label>Time limit (seconds): <input type="number" id="inputTime" value="15"></label><br>
+    <button id="saveSettings">Save</button>
+  </div>
+
   <script src="moving-button.js"></script>
 </body>
 </html>
