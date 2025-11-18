@@ -7,7 +7,7 @@ const gameOverSound = document.getElementById("gameOverSound");
 
 const settingsButton = document.getElementById("settingsButton");
 const settingsPanel = document.getElementById("settingsPanel");
-const saveSettings = document.getElementById("saveSettings");
+const saveSettingsBtn = document.getElementById("saveSettings");
 
 let gameRunning = false;
 
@@ -19,12 +19,12 @@ settingsButton.addEventListener("click", () => {
   } 
 });
 
-saveSettings.addEventListener("click", () => {
-  targetSize = parseInt(document.getElementById("inputSize").value);
-  adjustHitPercent = parseInt(document.getElementById("inputHitSpeed").value);
-  adjustMissPercent = parseInt(document.getElementById("inputMissSpeed").value);
-  gameTime = parseInt(document.getElementById("inputTime").value);
+saveSettingsBtn.addEventListener("click", () => {
+
   settingsPanel.style.display = "none";
+  if (gameRunning) return; 
+    saveSettings();
+  alert("Settings saved!");
 });
 
 
@@ -39,8 +39,8 @@ let hitTimer = null;
 
 let targetSize = 200;     // in px
 let adjustHitPercent = 20; // % faster per hit
-let adjustMissPercent = 20; // % slower per auto-move
-let gameTime = 15;         // seconds
+let gameTimeLimit = 15;         // seconds
+loadSettings();
 
 // move button to random place
 function moveButton() {
@@ -57,7 +57,7 @@ function startGame() {
   gameRunning = true;
   settingsPanel.style.display = "none";
   score = 0;
-  timeLeft = gameTime;
+  timeLeft = gameTimeLimit;
   timeText.textContent = timeLeft;
   highScoreDisplay.textContent = "High Score: " + highScore
 
@@ -92,6 +92,31 @@ function updateTimer() {
     endGame();
   }
 }
+function saveSettings() {
+    targetSize = document.getElementById("inputSize").value;
+    adjustHitPercent = document.getElementById("inputHitSpeed").value;
+    gameTimeLimit = document.getElementById("inputTime").value;
+    const settings = {
+        targetSize: targetSize,
+        adjustHitPercent: adjustHitPercent,
+        gameTimeLimit: gameTimeLimit
+    };
+console.log(document.getElementById("inputSize").value)
+    localStorage.setItem("movingButtonSettings", JSON.stringify(settings));
+}
+function loadSettings() {
+  document.getElementById("inputSize").value = targetSize; 
+  document.getElementById("inputHitSpeed").value = adjustHitPercent;
+  document.getElementById("inputTime").value = gameTimeLimit;
+    const saved = localStorage.getItem("movingButtonSettings");
+    if (!saved) return; // Nothing saved yet
+
+    const settings = JSON.parse(saved);
+
+    targetSize = settings.targetSize;
+    adjustHitPercent = settings.adjustHitPercent;
+    gameTimeLimit = settings.gameTimeLimit;
+}
 
 function handleHit() {
   moveButton();
@@ -108,7 +133,7 @@ function adjustSpeed(faster) {
   if (faster) {
     moveDelay = moveDelay * (1 - adjustHitPercent / 100);
   } else {
-    moveDelay = moveDelay * (1 + adjustMissPercent / 100);
+    moveDelay = moveDelay * (1 + adjustHitPercent / 100);
   }
 }
 
