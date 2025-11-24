@@ -8,6 +8,15 @@ const gameOverSound = document.getElementById("gameOverSound");
 const settingsButton = document.getElementById("settingsButton");
 const settingsPanel = document.getElementById("settingsPanel");
 const saveSettingsBtn = document.getElementById("saveSettings");
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
 
 let gameRunning = false;
 
@@ -117,11 +126,26 @@ function loadSettings() {
     adjustHitPercent = settings.adjustHitPercent;
     gameTimeLimit = settings.gameTimeLimit;
 }
+function clearCanvasArea(x, y, radius) {
+  ctx.clearRect(x - radius, y - radius, radius*2, radius*2);
+}
 
 function handleHit() {
   moveButton();
   adjustSpeed(true); // speed up after hit
   score++;
+  const hitX = button.offsetLeft + targetSize/2;
+const hitY = button.offsetTop + targetSize/2;
+drawHit(hitX, hitY);
+function drawHit(x, y) {
+  ctx.fillStyle = "red";
+  ctx.beginPath();
+  ctx.arc(x, y, 20, 0, Math.PI*2);
+  ctx.fill();
+  // maybe cause quick spread
+  setTimeout(() => { clearCanvasArea(x, y, 30); }, 400);
+}
+
   scoreText.textContent = score;
   clearInterval(autoMoveInterval);
   autoMoveInterval = setInterval(autoMove, moveDelay);
@@ -138,6 +162,17 @@ function adjustSpeed(faster) {
 }
 
 function autoMove() {
+  const oldX = button.offsetLeft;
+const oldY = button.offsetTop;
+drawMiss(oldX + targetSize/2, oldY + targetSize/2);
+function drawMiss(x, y) {
+  ctx.fillStyle = "black";
+  ctx.beginPath();
+  ctx.arc(x, y, 8, 0, Math.PI*2);
+  ctx.fill();
+  // optionally fade out after some time
+  setTimeout(() => { clearCanvasArea(x, y, 20); }, 500);
+}
   if (canMove) {
     moveButton();
     adjustSpeed(false); // slow down when auto moves
