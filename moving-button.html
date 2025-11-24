@@ -31,6 +31,8 @@
   <audio id="gameOverSound" src="gameover.mp3"></audio>
 </head>
 <body>
+  <canvas id="gameCanvas" width="window.innerWidth" height="window.innerHeight"
+        style="position:absolute; top:0; left:0; pointer-events:none;"></canvas>
   <h1>🎯 Catch the Button!</h1>
   <h2>Score: <span id="scoreText">?</span></h2>
   <h3 id="highScoreDisplay">High Score: 0</h3>
@@ -49,6 +51,4 @@
 
   <script src="moving-button.js"></script>
 </body>
-<canvas id="gameCanvas" width="window.innerWidth" height="window.innerHeight"
-        style="position:absolute; top:0; left:0; pointer-events:none;"></canvas>
 </html>
